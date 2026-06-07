@@ -417,6 +417,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#why-is-it-called-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why is it called "bias"?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linear-separability-what-problems-can-a-perceptron-solve" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -463,6 +474,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary-key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glossary: Key Concepts
+      
+    </span>
+  </a>
   
 </li>
       
@@ -633,6 +655,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#why-is-it-called-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why is it called "bias"?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linear-separability-what-problems-can-a-perceptron-solve" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -679,6 +712,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary-key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glossary: Key Concepts
+      
+    </span>
+  </a>
   
 </li>
       
@@ -736,7 +780,7 @@
 <li>Can make a prediction given a set of lights</li>
 <li>Can improve its threshold by looking at training examples</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessPredictor</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessDetector</span><span class="p">:</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="err">???</span>  <span class="c1"># We don&#39;t know this yet</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
@@ -793,22 +837,24 @@
 <li>If the prediction is wrong, nudge the threshold in the right direction.</li>
 <li>Repeat from step 2 until there are no more mistakes.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessDetector</span><span class="p">():</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="k">else</span> <span class="mi">0</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            <span class="k">for</span> <span class="n">lights</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">training_data</span><span class="p">:</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>                <span class="n">prediction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>                <span class="k">if</span> <span class="n">prediction</span> <span class="o">!=</span> <span class="n">label</span><span class="p">:</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>                    <span class="k">if</span> <span class="n">prediction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">-=</span> <span class="mi">1</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>                    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">+=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessDetector</span><span class="p">():</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="k">else</span> <span class="mi">0</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>            <span class="k">for</span> <span class="n">lights</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">training_data</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>                <span class="n">prediction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>                <span class="k">if</span> <span class="n">prediction</span> <span class="o">!=</span> <span class="n">label</span><span class="p">:</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>                    <span class="k">if</span> <span class="n">prediction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">-=</span> <span class="mi">1</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>                    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div>
 <h2 id="from-counting-lights-to-measuring-brightness">From counting lights to measuring brightness</h2>
 <p>So far, every bulb has counted equally toward the total. But the real world rarely works that way.</p>
@@ -824,75 +870,85 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessDetectorWithWeights</span><span class="p">():</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="n">total_brightness</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>            <span class="n">b</span> <span class="o">*</span> <span class="n">l</span> <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span><span class="p">,</span> <span class="n">lights</span><span class="p">)</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="p">)</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>        <span class="n">activation</span> <span class="o">=</span> <span class="n">total_brightness</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">activation</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="n">weighted_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weighted_sum</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_activation_function</span><span class="p">(</span><span class="n">weighted_sum</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Step function: returns 1 if input &gt; 0, else 0&quot;&quot;&quot;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">z</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_weighted_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the weighted sum of the lights including threshold&quot;&quot;&quot;</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">l</span> <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span><span class="p">,</span> <span class="n">lights</span><span class="p">))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
 </code></pre></div>
-<p>The threshold has been renamed <code>bias</code> — we'll explain why shortly. Its role has shifted slightly too: rather than comparing the sum against it, we add it to the sum and compare the result against zero. Mathematically equivalent, but it sets us up for a cleaner update rule.</p>
+<p>Notice the threshold's role has shifted: rather than comparing the sum against it, we add it to the sum and compare the result against zero. Mathematically equivalent, but it sets us up for a cleaner update rule.</p>
+<p>We call this combined value <code>activation</code>. Think of it as the perceptron's internal signal strength — how strongly it "feels" the input. A positive activation pushes the output toward 1 (bright); a negative activation pushes toward 0 (dark). The name comes from the idea of a neuron "activating": the higher the activation, the more likely the perceptron is to "fire" and output 1.</p>
+<p>In real neural networks, this "firing" decision is made by an <strong>activation function</strong>. We've separated this into its own method <code>_activation_function</code>. It takes the activation value and applies the <em>step function</em>: output 1 if the activation is positive, 0 otherwise. This mirrors how biological neurons either fire or don't fire based on whether their input signal crosses a threshold.</p>
 <h2 id="how-do-we-train-the-brightness-levels">How do we train the brightness levels?</h2>
 <p>The same logic that guided threshold updates now applies to every brightness level.</p>
 <p>Suppose <code>lights = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]</code> and the correct label is <code>bright (1)</code>, but the model predicts <code>dark (0)</code>.</p>
 <p>The activation was too low. We need to raise it. Which brightness levels should we increase? Only the ones whose bulbs were actually ON — the bulbs that were OFF contributed nothing to the activation regardless of their brightness levels, so changing them would have no effect.</p>
 <p>The reverse applies when we predicted bright but the room was dark: the activation was too high, so we nudge every ON bulb's brightness level downward.</p>
 <p>We control the size of each nudge with a parameter called the <strong>learning rate</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>new_brightness = old_brightness + learning_rate × (label - prediction) × bulb_state
-</code></pre></div>
-<p>Here, <code>(label - prediction)</code> is <code>+1</code> when we predicted too low, <code>-1</code> when we predicted too high, and <code>0</code> when correct. The bulb state (<code>1</code> or <code>0</code>) naturally zeroes out updates for OFF bulbs. The bias follows the same rule with an implicit input of <code>1</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>new_bias = old_bias + learning_rate × (label - prediction)
-</code></pre></div>
+<div class="arithmatex">\[\text{new_brightness} = \text{old_brightness} + \eta \times (\text{label} - \text{prediction}) \times \text{bulb_state}\]</div>
+<p>Here, <span class="arithmatex">\((\text{label} - \text{prediction})\)</span> is <span class="arithmatex">\(+1\)</span> when we predicted too low, <span class="arithmatex">\(-1\)</span> when we predicted too high, and <span class="arithmatex">\(0\)</span> when correct. The bulb state (<span class="arithmatex">\(1\)</span> or <span class="arithmatex">\(0\)</span>) naturally zeroes out updates for OFF bulbs. The threshold follows the same rule with an implicit input of <span class="arithmatex">\(1\)</span>:</p>
+<div class="arithmatex">\[b \leftarrow b + \eta \times (y - \hat{y})\]</div>
 <h2 id="why-do-we-need-a-learning-rate">Why do we need a learning rate?</h2>
 <p>Imagine changing brightness levels by <code>100</code> every time a mistake occurs. The model would overshoot and bounce around wildly, never settling.</p>
 <p>Instead, we make small corrections:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
 </code></pre></div>
 <p>This means: move only one tenth of a unit in the required direction. Large learning rates learn quickly but risk overshooting. Small learning rates are more stable but take longer. <code>0.1</code> is a sensible starting point.</p>
 <h2 id="the-full-training-algorithm">The full training algorithm</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessDetectorWithWeights</span><span class="p">():</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        <span class="n">total_brightness</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>            <span class="n">b</span> <span class="o">*</span> <span class="n">l</span> <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span><span class="p">,</span> <span class="n">lights</span><span class="p">)</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        <span class="p">)</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="n">activation</span> <span class="o">=</span> <span class="n">total_brightness</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">activation</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>            <span class="k">for</span> <span class="n">lights</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">training_data</span><span class="p">:</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>                <span class="n">prediction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>                <span class="n">error</span> <span class="o">=</span> <span class="n">label</span> <span class="o">-</span> <span class="n">prediction</span>  <span class="c1"># +1, -1, or 0</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lights</span><span class="p">)):</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">lights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">+=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BrightnessDetectorWithWeights</span><span class="p">():</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="n">weighted_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weighted_sum</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_activation_function</span><span class="p">(</span><span class="n">weighted_sum</span><span class="p">)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>            <span class="k">for</span> <span class="n">lights</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">training_data</span><span class="p">:</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>                <span class="n">prediction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">lights</span><span class="p">)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>                <span class="n">error</span> <span class="o">=</span> <span class="n">label</span> <span class="o">-</span> <span class="n">prediction</span>  <span class="c1"># +1, -1, or 0</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lights</span><span class="p">)):</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">lights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">+=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Step function: returns 1 if input &gt; 0, else 0&quot;&quot;&quot;</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">z</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_weighted_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lights</span><span class="p">):</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the weighted sum of the lights including threshold&quot;&quot;&quot;</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">l</span> <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">brightness_of_lights</span><span class="p">,</span> <span class="n">lights</span><span class="p">))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
 </code></pre></div>
-<p>If <code>error</code> is zero — correct prediction — nothing changes. Otherwise every brightness level whose bulb was ON gets nudged in the right direction, and so does the bias. Repeat across enough epochs and everything converges to values that classify every example correctly.</p>
+<p>If <code>error</code> is zero — correct prediction — nothing changes. Otherwise every brightness level whose bulb was ON gets nudged in the right direction, and so does the threshold. Repeat across enough epochs and everything converges to values that classify every example correctly.</p>
 <h2 id="why-does-starting-between-1-and-1-still-work">Why does starting between -1 and 1 still work?</h2>
 <p>Consider the output after training:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Initial Bias: 0.55
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Initial Brightness: [0.90, -0.61, -0.46, -0.79, -0.18, 0.46, 0.68, 0.81, -0.86, 0.48]
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Accuracy before training: 0.39
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Bias after training: -4.55
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>Brightness after training: [0.40, 0.89, 1.34, 0.41, 0.92, 1.16, 0.48, 0.91, 1.34, 0.38]
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>Accuracy after training: 1.00
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Initial Threshold: 0.55
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Initial Brightness: [0.90, -0.61, -0.46, -0.79, -0.18, 0.46, 0.68, 0.81, -0.86, 0.48]
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Accuracy before training: 0.39
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Threshold after training: -4.55
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Brightness after training: [0.40, 0.89, 1.34, 0.41, 0.92, 1.16, 0.48, 0.91, 1.34, 0.38]
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Accuracy after training: 1.00
 </code></pre></div>
 <p>Notice that the learned values don't match the actual brightness levels we set up earlier:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Actual:  1.0, 2.0, 3.0, ...
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Learned: 0.40, 0.89, 1.34, ...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Actual:  1.0, 2.0, 3.0, ...
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Learned: 0.40, 0.89, 1.34, ...
 </code></pre></div>
 <p>That's fine — because the perceptron is not trying to discover the physical brightness of each bulb. It's trying to discover <em>a boundary that makes correct predictions</em>. Many sets of values can produce the same boundary. The learned values are just one valid solution.</p>
 <p>What matters about the initialization is that the values are not all identical (otherwise every bulb would be updated by the same amount and the model could never distinguish between them) and not so large that early predictions are completely off course. Starting near zero satisfies both conditions. From there, the learning rule steers the values wherever they need to go.</p>
 <h2 id="from-room-to-formula-the-perceptron">From room to formula: the Perceptron</h2>
 <p>We built our brightness detector from first principles. Now let's step back and name what we actually built.</p>
-<p>A <strong>perceptron</strong> takes a list of numerical inputs, multiplies each by a learned <strong>weight</strong>, sums the results, adds a learned <strong>bias</strong>, and outputs a binary decision based on the sign of that sum.</p>
+<p>A <strong>perceptron</strong> takes a list of numerical inputs, multiplies each by a learned <strong>weight</strong>, sums the results, adds a learned <strong>bias</strong> (our threshold), and outputs a binary decision based on the sign of that sum.</p>
 <p>The terminology maps directly onto our room:</p>
 <table>
 <thead>
@@ -924,6 +980,12 @@
 </tr>
 </tbody>
 </table>
+<h2 id="why-is-it-called-bias">Why is it called "bias"?</h2>
+<p>In our room analogy, we thought of this value as a <em>threshold</em> — a level the total brightness must exceed. But in the perceptron equation, it's added to the weighted sum rather than compared against it. This shifted perspective reveals why it's called <strong>bias</strong> in neural network terminology.</p>
+<p>Think of the bias as controlling how easily the perceptron "fires." A positive bias makes the perceptron more inclined to output 1 (bright), even with weak inputs. A negative bias makes it more conservative, requiring stronger positive evidence to fire. It's like a <em>bias</em> in the perceptron's default behavior — a predisposition toward one output or the other before seeing any input.</p>
+<p>Mathematically, you can view the bias as the weight of an extra input that is always 1:</p>
+<div class="arithmatex">\[z = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n + b \cdot 1\]</div>
+<p>This is why the bias updates just like any other weight, but with a constant input of 1.</p>
 <p>Written as an equation, the activation is:</p>
 <div class="arithmatex">\[z = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n + b\]</div>
 <p>Or more compactly:</p>
@@ -931,9 +993,9 @@
 <p>The output is then:</p>
 <div class="arithmatex">\[\hat{y} = \begin{cases} 1 &amp; \text{if } z &gt; 0 \\ 0 &amp; \text{otherwise} \end{cases}\]</div>
 <p>The learning rule generalizes the same way. For each training example with inputs <span class="arithmatex">\(\mathbf{x}\)</span>, label <span class="arithmatex">\(y\)</span>, and prediction <span class="arithmatex">\(\hat{y}\)</span>:</p>
-<div class="arithmatex">\[w_i \leftarrow w_i + \eta\,(y - \hat{y})\,x_i \qquad \text{for each } i$$
-$$b \leftarrow b + \eta\,(y - \hat{y})\]</div>
-<p>where <span class="arithmatex">\(\eta\)</span> is the learning rate. When the prediction is correct, <span class="arithmatex">\(y - \hat{y} = 0\)</span> and nothing changes. When it's wrong, every weight is nudged in proportion to its input, and the bias is nudged unconditionally.</p>
+<div class="arithmatex">\[w_i \leftarrow w_i + \eta\,(y - \hat{y})\,x_i \qquad \text{for each } i\]</div>
+<div class="arithmatex">\[b \leftarrow b + \eta\,(y - \hat{y})\]</div>
+<p>where <span class="arithmatex">\(\eta\)</span> is the learning rate. When the prediction is correct, <span class="arithmatex">\(y - \hat{y} = 0\)</span> and nothing changes. When it's wrong, every weight is nudged in proportion to its input, and the bias (our threshold) is nudged unconditionally.</p>
 <p>The bulbs and brightness levels were just a way in. The perceptron works the same way for any inputs — pixel values, temperatures, word counts, sensor readings — as long as the problem has the right shape. What shape? That's what the next section is about.</p>
 <h2 id="linear-separability-what-problems-can-a-perceptron-solve">Linear separability: what problems can a perceptron solve?</h2>
 <p>To understand what a perceptron can and can't do, we need to look at what the activation is really computing.</p>
@@ -987,7 +1049,7 @@ $$b \leftarrow b + \eta\,(y - \hat{y})\]</div>
 </tbody>
 </table>
 <p>A boundary at 5 separates them perfectly:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>0  0  0  |  1  1  1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>0  0  0  |  1  1  1
 </code></pre></div>
 <p>A perceptron can learn this boundary.</p>
 <p>The <strong>Perceptron Convergence Theorem</strong> guarantees that if a linearly separable boundary exists, the learning algorithm will find it in a finite number of steps — regardless of where the values start. This is the theoretical underpinning of what we observed empirically: starting from random brightness levels, the model always converged to 100% accuracy.</p>
@@ -1028,6 +1090,47 @@ $$b \leftarrow b + \eta\,(y - \hat{y})\]</div>
 <p>A single perceptron can only carve the world in half with a straight cut. Problems that require curved or more complex boundaries are beyond its reach.</p>
 <p>This limitation led researchers to connect many perceptrons together into layers, where each layer can carve the space into increasingly complex shapes. That is the foundation of modern neural networks.</p>
 <p>The perceptron is therefore both a useful algorithm and the starting point upon which deep learning was built.</p>
+<hr />
+<h2 id="glossary-key-concepts">Glossary: Key Concepts</h2>
+<p>Here is a quick reference for the terminology we've developed:</p>
+<p><strong>Perceptron</strong><br />
+A computational unit that takes multiple inputs, applies weights to each, sums them, adds a bias, and produces a binary output based on whether the result exceeds zero. The simplest form of an artificial neuron.</p>
+<p><strong>Input (<span class="arithmatex">\(x_i\)</span>)</strong><br />
+A value (typically 0 or 1) fed into the perceptron, representing a feature of the data being classified.</p>
+<p><strong>Weight (<span class="arithmatex">\(w_i\)</span>)</strong><br />
+A learned parameter that scales an input's contribution to the weighted sum. Determines how strongly each input influences the output.</p>
+<p><strong>Bias (<span class="arithmatex">\(b\)</span>)</strong><br />
+A learned parameter added to the weighted sum, controlling how easily the perceptron outputs 1. A positive bias makes the perceptron more likely to fire; a negative bias makes it more conservative.</p>
+<p><strong>Weighted Sum</strong><br />
+The sum of all inputs multiplied by their corresponding weights: <span class="arithmatex">\(\sum w_i x_i\)</span>.</p>
+<p><strong>Activation (<span class="arithmatex">\(z\)</span>)</strong><br />
+The pre-activation value computed as the weighted sum plus the bias: <span class="arithmatex">\(z = \sum w_i x_i + b\)</span>. Represents the total input signal before the activation function is applied.</p>
+<p><strong>Activation Function</strong><br />
+A function that transforms the activation into the final output. Our perceptron uses the <strong>step function</strong>: output 1 if <span class="arithmatex">\(z &gt; 0\)</span>, else 0.</p>
+<p><strong>Output (<span class="arithmatex">\(\hat{y}\)</span>)</strong><br />
+The perceptron's final binary decision: 1 if the activation exceeds zero, 0 otherwise.</p>
+<p><strong>Training Data</strong><br />
+A set of labeled examples <span class="arithmatex">\((\mathbf{x}, y)\)</span> used to train the perceptron. Each example consists of input features and the corresponding correct output.</p>
+<p><strong>Prediction</strong><br />
+The output the perceptron produces for a given input before seeing the correct answer.</p>
+<p><strong>Error</strong><br />
+The difference between the correct label and the prediction (<span class="arithmatex">\(y - \hat{y}\)</span>). Tells us which direction to adjust weights: +1 if prediction too low, -1 if too high, 0 if correct.</p>
+<p><strong>Learning Rate (<span class="arithmatex">\(\eta\)</span>)</strong><br />
+A small number (typically 0.1) that controls how much we adjust weights on each update. Too large and we overshoot; too small and learning takes forever.</p>
+<p><strong>Epoch</strong><br />
+One complete pass through all training examples. Multiple epochs are usually needed for the perceptron to converge.</p>
+<p><strong>Update Rule</strong><br />
+The formula for adjusting weights based on error: <span class="arithmatex">\(w_i \leftarrow w_i + \eta \cdot (y - \hat{y}) \cdot x_i\)</span>. Moves weights in the direction that reduces future errors.</p>
+<p><strong>Decision Boundary</strong><br />
+The dividing line (or hyperplane) that separates the region where the perceptron outputs 1 from where it outputs 0. For a perceptron, this is always a straight cut through the input space.</p>
+<p><strong>Linear Separability</strong><br />
+A property of a classification problem where the two classes can be perfectly separated by a straight line (or hyperplane in higher dimensions). Perceptrons can only solve linearly separable problems.</p>
+<p><strong>Hyperplane</strong><br />
+The generalization of a decision boundary to any number of dimensions. In 1D it's a point, in 2D it's a line, in 3D it's a plane, and in higher dimensions it's a hyperplane.</p>
+<p><strong>Perceptron Convergence Theorem</strong><br />
+The mathematical guarantee that if a linearly separable solution exists, the perceptron learning algorithm will find it in a finite number of steps.</p>
+<p><strong>Binary Classification</strong><br />
+The task of classifying inputs into one of two categories. The perceptron outputs 1 for the positive class and 0 for the negative class.</p>
 
 
 
